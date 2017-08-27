@@ -24,7 +24,13 @@
       "deleteById": true,
       "find": true,
       "findById": true,
-      "accept_by_developer": true
+      "accept_by_developer": true,
+      "ready": true,
+      "accept_money": true,
+      "hold_money": true,
+      "pay_money": true,
+      "register_ddu": true,
+      "register_rights": true
     }
   }
 }

@@ -16,6 +16,19 @@ module.exports = function (Ddu) {
         }
     );
 
+    Ddu.ready = function (ddu_id, cb) {
+        cb(null, ddu_id);
+    };
+    Ddu.remoteMethod(
+        'ready',
+        {
+            accepts: [{arg: 'ddu_id', type: 'string'}],
+            returns: {arg: 'result', type: 'string'},
+            http: {path: '/ready', verb: 'post'},
+            description: "Building is ready"
+        }
+    );
+
     Ddu.on('dataSourceAttached', function(obj){
         var remove = Ddu.remove;
         Ddu.remove = function(id, cb) {
@@ -26,7 +39,7 @@ module.exports = function (Ddu) {
         var findById = Ddu.findById;
         Ddu.findById = function(id, filter, cb) {
             var model = findById.apply(this, arguments);
-            // get data from BC if etherium_id presents, populate props
+            // get data from BC if etherium_id presents, populate props like status
             return model;
         }
     });

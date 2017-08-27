@@ -16,5 +16,17 @@
   "ddu": {
     "dataSource": "inmem",
     "public": true
+  },
+  "money": {
+    "dataSource": "inmem",
+    "public": true
+  },
+  "fds": {
+    "dataSource": null,
+    "public": true
+  },
+  "rr": {
+    "dataSource": null,
+    "public": true
   }
 }
