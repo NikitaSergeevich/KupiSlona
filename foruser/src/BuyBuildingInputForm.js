@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, Form, Input, Radio} from 'antd';
+import {Button, Modal, Form, Input, Radio, Select} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -7,11 +7,20 @@ const CollectionCreateForm = Form.create()(
   (props) => {
     const { visible, onCancel, onCreate, form } = props;
     const { getFieldDecorator } = form;
+    const prefixSelector = getFieldDecorator('prefix', {
+      initialValue: '7',
+    })(
+      <Select style={{ width: 60 }}>
+        <Option value="7">+7</Option>
+        <Option value="8">8</Option>
+      </Select>
+    );
+
     return (
       <Modal
         visible={visible}
         title="Создаёт новый ДДУ?"
-        okText="Создать"
+        okText="Создать контракт"
         cancelText="Отменить"
         onCancel={onCancel}
         onOk={onCreate}
@@ -26,6 +35,13 @@ const CollectionCreateForm = Form.create()(
           </FormItem>
           <FormItem label="Чем знаменит?">
             {getFieldDecorator('description')(<Input type="textarea" />)}
+          </FormItem>
+          <FormItem label="Номер телефона">
+            {getFieldDecorator('phone', {
+              rules: [{ required: true, message: 'Надо номер телефона ввести' }],
+            })(
+              <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+            )}
           </FormItem>
           <FormItem className="collection-create-form_last-form-item">
             {getFieldDecorator('modifier', {
