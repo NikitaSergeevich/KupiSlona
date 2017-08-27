@@ -2,7 +2,7 @@
 
 module.exports = function (Ddu) {
     Ddu.accept_by_developer = function (ddu_id, cb) {
-        // post to BC
+        // post DDU to BC
         // update etherium_id of DDU
         cb(null, ddu_id);
     };
@@ -16,13 +16,14 @@ module.exports = function (Ddu) {
         }
     );
 
-    Ddu.ready = function (ddu_id, cb) {
-        cb(null, ddu_id);
+    Ddu.ready = function (building_id, cb) {
+        // post ready status for all DDU with building_id to BC
+        cb(null, building_id);
     };
     Ddu.remoteMethod(
         'ready',
         {
-            accepts: [{arg: 'ddu_id', type: 'string'}],
+            accepts: [{arg: 'building_id', type: 'string'}],
             returns: {arg: 'result', type: 'string'},
             http: {path: '/ready', verb: 'post'},
             description: "Building is ready"
@@ -33,6 +34,7 @@ module.exports = function (Ddu) {
         var remove = Ddu.remove;
         Ddu.remove = function(id, cb) {
             // cancel DDU in BC
+            // return holded money to developer account
             return remove.apply(this, arguments);
         };
 

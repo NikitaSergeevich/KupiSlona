@@ -3,7 +3,10 @@
 module.exports = function(Fds) {
 
     Fds.accept_money = function (money_id, cb) {
-        cb(null, ddu_id);
+        // get transaction amount
+        // update account of developer in BC
+        // remove pending transaction
+        cb(null, money_id);
     };
     Fds.remoteMethod(
         'accept_money',
@@ -16,6 +19,9 @@ module.exports = function(Fds) {
     );
 
     Fds.hold_money = function (ddu_id, cb) {
+        // check if account of developer has enough money
+        // if yes hold them in BC and return ok
+        // else return err
         cb(null, ddu_id);
     };
     Fds.remoteMethod(

@@ -3,6 +3,9 @@
 module.exports = function(Rr) {
 
     Rr.register_ddu = function (ddu_id, cb) {
+        // save registration req in BC
+        // ask fds/hold-money
+        // if ok save ddu status to registered in BC
         cb(null, ddu_id);
     };
     Rr.remoteMethod(
@@ -16,6 +19,8 @@ module.exports = function(Rr) {
     );
 
     Rr.register_rights = function (ddu_id, cb) {
+        // save reg req in BC
+        // try to reg DDU
         cb(null, ddu_id);
     };
     Rr.remoteMethod(
