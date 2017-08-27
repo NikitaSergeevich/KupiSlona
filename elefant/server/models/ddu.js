@@ -15,4 +15,19 @@ module.exports = function (Ddu) {
             description: "Accept DDU by developer and post it to blockchain"
         }
     );
+
+    Ddu.on('dataSourceAttached', function(obj){
+        var remove = Ddu.remove;
+        Ddu.remove = function(id, cb) {
+            // cancel DDU in BC
+            return remove.apply(this, arguments);
+        };
+
+        var findById = Ddu.findById;
+        Ddu.findById = function(id, filter, cb) {
+            var model = findById.apply(this, arguments);
+            // get data from BC if etherium_id presents, populate props
+            return model;
+        }
+    });
 };
