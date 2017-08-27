@@ -52,28 +52,6 @@ class App extends Component {
             </Card>
           </Col>
         </Row>
-        <Row className='margin_top_10' gutter={16}>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-        </Row>
-        <Row className='margin_top_10' gutter={16}>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-        </Row>
         <Row className='margin_top_10'>
           <Col span={24}>
               <Pagination defaultCurrent={10} total={5000} />
