@@ -1,5 +1,6 @@
 {
   "name": "ddu",
+  "plural": "ddu",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -21,6 +22,10 @@
     "hash": {
       "type": "string",
       "required": true
+    },
+    "etherium_id": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
