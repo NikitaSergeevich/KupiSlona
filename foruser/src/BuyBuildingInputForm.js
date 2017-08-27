@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import {Button, Modal, Form, Input, Radio, Select} from 'antd';
+import {Row, Col, Button, Modal, Form, Input, Radio, Select} from 'antd';
 
 const FormItem = Form.Item;
 
 const CollectionCreateForm = Form.create()(
   (props) => {
-    const { visible, onCancel, onCreate, form } = props;
-    const { getFieldDecorator } = form;
+    const {visible, onCancel, onCreate, form, sendCode, smsLoad} = props;
+    const {getFieldDecorator} = form;
     const prefixSelector = getFieldDecorator('prefix', {
       initialValue: '7',
     })(
-      <Select style={{ width: 60 }}>
+      <Select style={{width: 60}}>
         <Option value="7">+7</Option>
         <Option value="8">8</Option>
       </Select>
@@ -28,20 +28,37 @@ const CollectionCreateForm = Form.create()(
         <Form layout="vertical">
           <FormItem label="Кто такой?">
             {getFieldDecorator('title', {
-              rules: [{ required: true, message: 'Пжста представьтесь' }],
+              rules: [{required: true, message: 'Пжста представьтесь'}],
             })(
-              <Input />
+              <Input/>
             )}
           </FormItem>
           <FormItem label="Чем знаменит?">
-            {getFieldDecorator('description')(<Input type="textarea" />)}
+            {getFieldDecorator('description')(<Input type="textarea"/>)}
           </FormItem>
           <FormItem label="Номер телефона">
             {getFieldDecorator('phone', {
-              rules: [{ required: true, message: 'Надо номер телефона ввести' }],
+              rules: [{required: true, message: 'Надо номер телефона ввести'}],
             })(
-              <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+              <Input addonBefore={prefixSelector} style={{width: '100%'}}/>
             )}
+          </FormItem>
+          <FormItem
+            label="Смс-пароль"
+            extra="Мы должны удостовериться в том что вы человек"
+          >
+            <Row gutter={8}>
+              <Col span={12}>
+                {getFieldDecorator('captcha', {
+                  rules: [{required: true, message: 'Пжста введи код'}],
+                })(
+                  <Input size="large"/>
+                )}
+              </Col>
+              <Col span={12}>
+                <Button size="large" loading={smsLoad} onClick={(e) => {sendCode(e)}}>Получить смс-код</Button>
+              </Col>
+            </Row>
           </FormItem>
           <FormItem className="collection-create-form_last-form-item">
             {getFieldDecorator('modifier', {
@@ -62,12 +79,13 @@ const CollectionCreateForm = Form.create()(
 class BuyBuildingInputForm extends Component {
   state = {
     visible: false,
+    smsLoad: false
   };
   showModal = () => {
-    this.setState({ visible: true });
+    this.setState({visible: true});
   };
   handleCancel = () => {
-    this.setState({ visible: false });
+    this.setState({visible: false});
   };
   handleCreate = () => {
     const form = this.form;
@@ -78,12 +96,16 @@ class BuyBuildingInputForm extends Component {
 
       console.log('Received values of form: ', values);
       form.resetFields();
-      this.setState({ visible: false });
+      this.setState({visible: false});
     });
   };
   saveFormRef = (form) => {
     this.form = form;
   };
+  sendCode = () => {
+    console.log('Code sent to phone number: ')
+  };
+
   render() {
     return (
       <div>
@@ -93,6 +115,8 @@ class BuyBuildingInputForm extends Component {
           visible={this.state.visible}
           onCancel={this.handleCancel}
           onCreate={this.handleCreate}
+          sendCode={this.sendCode}
+          smsLoad={this.state.smsLoad}
         />
       </div>
     );
