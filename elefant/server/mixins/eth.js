@@ -1,7 +1,7 @@
 const Web3 = require('web3');
 
 function getContract () {
-    var web3 = new Web3(new Web3.providers.HttpProvider('http://kovan.infura.io/gn3FL6AeF2Lr0rgK82FM'));
+    var web3 = new Web3(new Web3.providers.HttpProvider('https://kovan.infura.io/gn3FL6AeF2Lr0rgK82FM'));
     var jsonInterface =
         [{"constant":false,"inputs":[{"name":"_idObject","type":"string"},{"name":"_cost","type":"uint256"}],"name":"createDdu","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"seller","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"fds","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"buyer","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"rosreestr","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"dduorderContract","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_buyer","type":"address"},{"name":"_seller","type":"address"},{"name":"_rosreestr","type":"address"},{"name":"_fds","type":"address"}],"name":"createUser","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"}]
     ;
