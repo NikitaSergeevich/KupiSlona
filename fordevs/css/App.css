@@ -45,6 +45,15 @@
   margin-top: 40px;
 }
 
+.margin_right_left {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.center {
+  margin: 0 auto;
+}
+
 .margin_top_10 {
   margin-top: 10px;
 }
@@ -138,7 +147,8 @@
   display: block;
 }
 .custom-card {
-  padding: 10px 16px;
+  padding: 10px 40px 20px 10px;
+  padding-left: 10px;
 }
 .custom-card p {
   color: #999;

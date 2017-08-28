@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, Input, Pagination } from 'antd';
+import { Row, Col, Card, Input, Pagination, Button, Modal } from 'antd';
+import axios from 'axios';
 
 const Search = Input.Search;
 
@@ -8,37 +9,60 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: props.initialColor
+      ddu: []
     };
   }
 
   componentWillMount() {
-    
+    var instance = axios.create({
+      baseURL: 'http://localhost:3001/api',
+      timeout: 1000,
+    });
+    instance.get('/ddu').then(
+      (response) => {
+        this.setState({ ddu: response.data });
+      }
+    )
+  }
+
+  onConfirm() {
+    Modal.confirm({
+      content: (
+        <Col>
+          Подтрвердите sms-код
+          <Input />
+        </Col>
+      ),
+      okText: "Подтвердить",
+      cancelText: "Отмена",
+      maskClosable: true,
+      onCancel: () => { },
+      iconType: "",
+    });
   }
 
   render() {
     return (
       <div>
-        <Row className='margin_top_10' gutter={16}>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={true}>Card content</Card>
-          </Col>
-        </Row>
+        <Col span={6}>
+          {
+            this.state.ddu.map((e) => {
+              return (
+                <Card title="Кооператив озеро" bordered={true}>
+                  <Row className='center' gutter={1} type={"flex"} justify={"space-between"}>
+                    <Button className='custom-card' size={'small'} type={'type'}
+                      onClick={(e) => { this.onConfirm() }}>
+                      Подтвердить
+                    </Button>
+                    <Button className='custom-card'>
+                      Перепроверка
+                    </Button>
+                  </Row>
+                </Card>
+              )
+            })
+          }
+        </Col>
       </div>
     );
   }
