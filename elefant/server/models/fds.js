@@ -1,12 +1,17 @@
 'use strict';
 
-module.exports = function(Fds) {
+module.exports = function (Fds) {
 
     Fds.accept_money = function (money_id, cb) {
-        // get transaction amount
-        // update account of developer in BC
-        // remove pending transaction
-        cb(null, money_id);
+        Fds.getApp(function (err, app) {
+            // get transaction amount
+            // update account of developer in BC
+            // remove pending transaction
+            // app.modules.Money.destroyById(money_id, function(err) {
+            // cb(null, money_id);
+            // });
+            cb(null, money_id);
+        })
     };
     Fds.remoteMethod(
         'accept_money',
@@ -36,6 +41,7 @@ module.exports = function(Fds) {
 
 
     Fds.pay_money = function (ddu_id, cb) {
+        // remove money from balance in BC
         cb(null, ddu_id);
     };
     Fds.remoteMethod(

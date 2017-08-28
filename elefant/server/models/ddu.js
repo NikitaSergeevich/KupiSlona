@@ -4,6 +4,8 @@ module.exports = function (Ddu) {
     Ddu.accept_by_developer = function (ddu_id, cb) {
         // post DDU to BC
         // update etherium_id of DDU
+        // results.updateAttributes({}, function () {
+        // });
         cb(null, ddu_id);
     };
     Ddu.remoteMethod(
@@ -30,19 +32,20 @@ module.exports = function (Ddu) {
         }
     );
 
-    Ddu.on('dataSourceAttached', function(obj){
+    Ddu.on('dataSourceAttached', function (obj) {
         var remove = Ddu.remove;
-        Ddu.remove = function(id, cb) {
+        Ddu.remove = function (id, cb) {
             // cancel DDU in BC
             // return holded money to developer account
             return remove.apply(this, arguments);
         };
 
         var findById = Ddu.findById;
-        Ddu.findById = function(id, filter, cb) {
-            var model = findById.apply(this, arguments);
-            // get data from BC if etherium_id presents, populate props like status
-            return model;
+        Ddu.findById = function (id, filter, cb) {
+            findById.call(this, id, filter, function (err, results) {
+                // get data from BC if etherium_id presents, populate props like status
+                cb(err, results);
+            });
         }
     });
 };
