@@ -1,69 +1,55 @@
-import React, { Component } from 'react';
-import { Row, Col, Card, Input, Pagination, Button, Modal } from 'antd';
-import axios from 'axios';
+import React, {Component} from 'react';
+import {Row, Col, Card, Input, Button, Modal} from 'antd';
 
-const Search = Input.Search;
+import history from './index';
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      ddu: []
-    };
-  }
-
-  componentWillMount() {
-    var instance = axios.create({
-      baseURL: 'http://localhost:3001/api',
-      timeout: 1000,
-    });
-    instance.get('/ddu').then(
-      (response) => {
-        this.setState({ ddu: response.data });
-      }
-    )
-  }
 
   onConfirm() {
     Modal.confirm({
       content: (
-        <Col>
-          Подтрвердите sms-код
-          <Input />
-        </Col>
+        <div>
+          Подтвердите sms-код
+          <Input/>
+        </div>
       ),
       okText: "Подтвердить",
       cancelText: "Отмена",
       maskClosable: true,
-      onCancel: () => { },
       iconType: "",
+      onOk: () => {
+        history.push('/status');
+      }
     });
   }
 
   render() {
     return (
-      <div>
+      <Row>
         <Col span={6}>
-          {
-            this.state.ddu.map((e) => {
-              return (
-                <Card title="Кооператив озеро" bordered={true}>
-                  <Row className='center' gutter={1} type={"flex"} justify={"space-between"}>
-                    <Button className='custom-card' size={'small'} type={'type'}
-                      onClick={(e) => { this.onConfirm() }}>
-                      Подтвердить
-                    </Button>
-                    <Button className='custom-card'>
-                      Перепроверка
-                    </Button>
-                  </Row>
-                </Card>
-              )
-            })
-          }
+          <Card title="Ожидает подтверждения" extra={<a href="#">Перепроверка</a>} bordered={true}>
+            <Row>
+              <Col span={24}>
+                <div className="custom-image">
+                  <img alt="Фотка" width="100%"
+                       src="http://nalichniki.com/blog/wp-content/uploads/2016/06/Vyazniki_127-%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg"/>
+                </div>
+                <div className="custom-card">
+                  <h3>Избушка + ножки</h3>
+                  <p>$10000000</p>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24}>
+                <Button style={{width: "100%"}} type='primary' size='large' onClick={this.onConfirm}>
+                  Подтвердить </Button>
+              </Col>
+            </Row>
+          </Card>
         </Col>
-      </div>
+        <Col span={18}/>
+      </Row>
     );
   }
 }

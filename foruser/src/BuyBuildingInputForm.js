@@ -126,6 +126,7 @@ class BuyBuildingInputForm extends Component {
             <Item color="gray">ДДУ сформирован</Item>
             <Item color="gray">ДДУ зарегестрирован</Item>
           </Timeline>
+        </div>
         <div className="margin_top_10">
           <Button type="primary" size="large" onClick={this.showModal}>Купить слона</Button>
           <CollectionCreateForm
@@ -136,7 +137,6 @@ class BuyBuildingInputForm extends Component {
             sendCode={this.sendCode}
             smsLoad={this.state.smsLoad}
           />
-        </div>
         </div>
       </div>
     );
