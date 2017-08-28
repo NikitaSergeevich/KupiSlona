@@ -34,7 +34,7 @@ module.exports = function(Model, options) {
         phys: '0x4088f8A4513691b97D5bD72C71DC22Ee22018E1e',
         developer: '0xc8612eea5aB2E834AcC3d79e98D4Cbb7ddeB7054',
         main: { wallet: '0xBdB286727D6edDf783db682DD01bF712B0b83dDF', key: 'c24834b67796d24762edd09c91fc3be2a4707e5624ebaf41e5da56568ec16d19' },
-        rr: '0x4662e767dD94F75dc339290f5f7810E35abF3050',
-        fds: '0x24eEa7374bDf34DCCF481788Fb16E9a1a0D58133'
+        rr: { wallet: '0x4662e767dD94F75dc339290f5f7810E35abF3050', key: 'a685ca8bcc9c21bd3c41146b5c97a9032a505e66950c892dc0fc42c91ab7009b' },
+        fds: { wallet: '0x24eEa7374bDf34DCCF481788Fb16E9a1a0D58133', key: '7e2573186517a3cb9db5f777f83249886b226a8400fc97e156a99113aa8e0e40'}
     };
 };
