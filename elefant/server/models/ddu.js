@@ -15,8 +15,8 @@ module.exports = function (Ddu) {
         //     .then(function(receipt){
         //         // will be fired once the receipt its mined
         //     });
-        Ddu.contract.methods.createDdu('10', 5000).send({
-            from: Ddu.ids.main
+        Ddu.contract(Ddu.ids.main).methods.createDdu('10', 5000).send({
+            from: Ddu.ids.main.wallet
         }, function(error, result) {
             console.log('create ddu', error, result);
             if(!error) {
