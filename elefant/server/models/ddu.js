@@ -1,12 +1,29 @@
 'use strict';
 
+
 module.exports = function (Ddu) {
     Ddu.accept_by_developer = function (ddu_id, cb) {
         // post DDU to BC
         // update etherium_id of DDU
         // results.updateAttributes({}, function () {
         // });
-        cb(null, ddu_id);
+        // web3.eth.sendTransaction({from: '0x123...', data: '0x432...'})
+        //     .once('transactionHash', function(hash){ })
+        //     .once('receipt', function(receipt){ })
+        //     .on('confirmation', function(confNumber, receipt){ })
+        //     .on('error', function(error){ })
+        //     .then(function(receipt){
+        //         // will be fired once the receipt its mined
+        //     });
+        Ddu.contract.methods.createDdu('10', 5000).send({
+            from: Ddu.ids.main
+        }, function(error, result) {
+            console.log('create ddu', error, result);
+            if(!error) {
+
+            }
+            cb(null, result);
+        });
     };
     Ddu.remoteMethod(
         'accept_by_developer',
