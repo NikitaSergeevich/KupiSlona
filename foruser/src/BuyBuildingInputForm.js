@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Row, Col, Button, Modal, Form, Input, Radio, Select} from 'antd';
+import {Row, Col, Button, Modal, Form, Input, Radio, Select, Timeline} from 'antd';
 
 const FormItem = Form.Item;
+const Item = Timeline.Item;
 
 const CollectionCreateForm = Form.create()(
   (props) => {
@@ -56,7 +57,9 @@ const CollectionCreateForm = Form.create()(
                 )}
               </Col>
               <Col span={12}>
-                <Button size="large" loading={smsLoad} onClick={(e) => {sendCode(e)}}>Получить смс-код</Button>
+                <Button size="large" loading={smsLoad} onClick={(e) => {
+                  sendCode(e)
+                }}>Получить смс-код</Button>
               </Col>
             </Row>
           </FormItem>
@@ -79,7 +82,8 @@ const CollectionCreateForm = Form.create()(
 class BuyBuildingInputForm extends Component {
   state = {
     visible: false,
-    smsLoad: false
+    smsLoad: false,
+    commited: false
   };
   showModal = () => {
     this.setState({visible: true});
@@ -96,7 +100,7 @@ class BuyBuildingInputForm extends Component {
 
       console.log('Received values of form: ', values);
       form.resetFields();
-      this.setState({visible: false});
+      this.setState({visible: false, commited: true});
     });
   };
   saveFormRef = (form) => {
@@ -109,15 +113,31 @@ class BuyBuildingInputForm extends Component {
   render() {
     return (
       <div>
-        <Button type="primary" size="large" onClick={this.showModal}>Купить слона</Button>
-        <CollectionCreateForm
-          ref={this.saveFormRef}
-          visible={this.state.visible}
-          onCancel={this.handleCancel}
-          onCreate={this.handleCreate}
-          sendCode={this.sendCode}
-          smsLoad={this.state.smsLoad}
-        />
+        <div className="margin_top_40">
+          <Timeline>
+            <Item color={this.state.commited ? "green" : "red"}>Заполнить документашку</Item>
+            <Item color={this.state.commited ? "green" : "gray"}>Подтвердить личность</Item>
+            <Item color={this.state.commited ? "red" : "gray"}>Подождать ответа застройщика</Item>
+            <Item color="gray">Документ внесён в реестр</Item>
+            <Item color="gray">Средства в размере 1.2% переведены</Item>
+            <Item color="gray">Средства поступили в реестр</Item>
+            <Item color="gray">Средства списаны</Item>
+            <Item color="gray">ДДУ оплачен</Item>
+            <Item color="gray">ДДУ сформирован</Item>
+            <Item color="gray">ДДУ зарегестрирован</Item>
+          </Timeline>
+        <div className="margin_top_10">
+          <Button type="primary" size="large" onClick={this.showModal}>Купить слона</Button>
+          <CollectionCreateForm
+            ref={this.saveFormRef}
+            visible={this.state.visible}
+            onCancel={this.handleCancel}
+            onCreate={this.handleCreate}
+            sendCode={this.sendCode}
+            smsLoad={this.state.smsLoad}
+          />
+        </div>
+        </div>
       </div>
     );
   }
