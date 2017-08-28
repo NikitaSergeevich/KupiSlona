@@ -45,7 +45,7 @@ const CollectionCreateForm = Form.create()(
           </FormItem>
           <FormItem
             label="Смс-пароль"
-            extra="Мы должны удостовериться в том что вы человек"
+            extra="Мы должны удостовериться в том что вы умеете читать"
           >
             <Row gutter={8}>
               <Col span={12}>
@@ -109,7 +109,7 @@ class BuyBuildingInputForm extends Component {
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>Купить слона</Button>
+        <Button type="primary" size="large" onClick={this.showModal}>Купить слона</Button>
         <CollectionCreateForm
           ref={this.saveFormRef}
           visible={this.state.visible}

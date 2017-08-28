@@ -21,7 +21,8 @@ class App extends Component {
           <Col span={8}>
             <Card title="Новостройки в Москве" bordered={true}>
               <div className="custom-image">
-                <img alt="Фото здания" height="auto" width="100%" src="http://www.kvartirimoskva.ru/img/content_img/Statiy5011.jpg" />
+                <img alt="Фото здания" height="auto" width="100%"
+                     src="http://www.kvartirimoskva.ru/img/content_img/Statiy5011.jpg"/>
               </div>
               <div className="custom-card">
                 <h3>Новый супер-проект</h3>
@@ -32,7 +33,7 @@ class App extends Component {
           <Col span={8}>
             <Card title="Старостройки в Ижевске" bordered={true}>
               <div className="custom-image">
-                <img alt="Моделька" width="100%" src="http://izhevsk.ru/forums/icons/forum_pictures/003337/3337274.jpg" />
+                <img alt="Фотка" width="100%" src="http://izhevsk.ru/forums/icons/forum_pictures/003337/3337274.jpg"/>
               </div>
               <div className="custom-card">
                 <h3>Только цокольные этажи?</h3>
@@ -43,10 +44,13 @@ class App extends Component {
           <Col span={8}>
             <Card title="Растрескавшиеся дома в Иннополисе" bordered={true}>
               <div className="custom-image">
-                <img alt="Моделька" width="100%" src="http://nalichniki.com/blog/wp-content/uploads/2016/06/Vyazniki_127-%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg" />
+                <a href="/status">
+                  <img alt="Фотка" width="100%"
+                       src="http://nalichniki.com/blog/wp-content/uploads/2016/06/Vyazniki_127-%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg"/>
+                </a>
               </div>
               <div className="custom-card">
-                <h3>Неясная херня</h3>
+                <h3>Избушка + ножки</h3>
                 <p>$10000000</p>
               </div>
             </Card>
@@ -54,7 +58,7 @@ class App extends Component {
         </Row>
         <Row className='margin_top_10'>
           <Col span={24}>
-              <Pagination defaultCurrent={10} total={5000} />
+            <Pagination defaultCurrent={10} total={5000}/>
           </Col>
         </Row>
       </div>
